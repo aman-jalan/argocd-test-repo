@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/eyad-kobatte/test-argocd-site.git
+    path: guestbook/backend
+    targetRevision: HEAD
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
