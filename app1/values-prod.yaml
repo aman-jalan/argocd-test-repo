@@ -1,6 +1,6 @@
 appName: test-helios-application
 version: 
-namespace: production
+namespace: default
 replicas: 5
 image:
   base: "devopsjourney1/mywebapp"
