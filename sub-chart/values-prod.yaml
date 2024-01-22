@@ -1,0 +1,15 @@
+appName: test-helios-application
+version: 
+namespace: production
+replicas: 5
+image:
+  base: "devopsjourney1/mywebapp"
+  tag: latest
+resources:
+  requests:
+    memory: "32Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "5000m"
+
