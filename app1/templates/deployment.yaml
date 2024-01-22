@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Values.appName } }
-  namespace: default
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
   labels:
-    app:{ { .Values.appName } }
+    app: {{ .Values.appName }}
 spec:
-  replicas: 5
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app:{ { .Values.appName } }
+      app: {{ .Values.appName }}
       tier: frontend
   template:
     metadata:
       labels:
-        app:{ { .Values.appName } }
+        app: {{ .Values.appName }}
         tier: frontend
     spec: # Pod spec
       containers:
         - name: mycontainer
-          image: devopsjourney1/mywebapp:latest
+          image: "{{ .Values.image.base }}/{{ .Values.appName }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 80
           envFrom:
@@ -27,8 +27,8 @@ spec:
                 name: myconfigmapv1.0
           resources:
             requests:
-              memory: "16Mi"
-              cpu: "50m" # 500milliCPUs (1/2 CPU)
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
             limits:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
