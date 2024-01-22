@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/eyad-kobatte/test-argocd-site.git
+    repoURL: https://github.com/aman-jalan/argocd-test-repo.git
     path: guestbook/bff
     targetRevision: HEAD
   destination:
